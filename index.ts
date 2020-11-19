@@ -6,9 +6,9 @@ if (!process.env.BOT_TOKEN) {
 }
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
-if (process.env.APP_URL) {
+if (process.env.APP_URL && process.env.PORT) {
     bot.telegram.setWebhook(process.env.APP_URL)
-    bot.startWebhook(process.env.BOT_TOKEN, null, 443)
+    bot.startWebhook(process.env.BOT_TOKEN, null, parseInt(process.env.PORT))
 }
 
 bot.start((ctx) => ctx.reply('Welcome!'))
