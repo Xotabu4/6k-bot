@@ -5,9 +5,9 @@ if (!process.env.BOT_TOKEN) {
     throw new Error('BOT_TOKEN env var needed')
 }
 
-
 const bot = new Telegraf(process.env.BOT_TOKEN)
-bot.startWebhook('/secret-path', null, 5000)
+bot.telegram.setWebhook(process.env.APP_URL)
+bot.startWebhook(process.env.BOT_TOKEN, null, 5000)
 
 bot.start((ctx) => ctx.reply('Welcome!'))
 // [
