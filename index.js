@@ -26,7 +26,8 @@ bot.setWebHook(`${url}/bot${process.env.BOT_TOKEN}`);
 
 bot.onText(/\/exchangeRate/, async (msg, match) => {
     const body = JSON.parse((await got('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5')).body)
-    const reply = `
+    const reply = 
+`
 PrivatBank 💵
 USD покупка: ${body.find(c => c.ccy === 'USD').buy}
 USD продажа: ${body.find(c => c.ccy === 'USD').sale}
