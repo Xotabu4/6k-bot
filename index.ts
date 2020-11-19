@@ -7,6 +7,7 @@ if (!process.env.BOT_TOKEN) {
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
 if (process.env.APP_URL && process.env.PORT) {
+    console.log(`Staring lisen at ${process.env.APP_URL} ${process.env.PORT} and /==token==`)
     bot.telegram.setWebhook(process.env.APP_URL)
     bot.startWebhook(process.env.BOT_TOKEN, null, parseInt(process.env.PORT))
 }

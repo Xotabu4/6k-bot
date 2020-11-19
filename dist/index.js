@@ -38,19 +38,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 var telegraf_1 = require("telegraf");
 var got_1 = __importDefault(require("got"));
 if (!process.env.BOT_TOKEN) {
     throw new Error('BOT_TOKEN env var needed');
 }
-// Heroku built in env var
-var webhookUrl = (_a = process.env.APP_URL) !== null && _a !== void 0 ? _a : false;
 var bot = new telegraf_1.Telegraf(process.env.BOT_TOKEN);
-if (webhookUrl) {
-    bot.telegram.setWebhook(webhookUrl + "/bot" + process.env.BOT_TOKEN);
-    bot.startWebhook(webhookUrl + "/bot" + process.env.BOT_TOKEN, null, 5000);
+if (process.env.APP_URL && process.env.PORT) {
+    console.log("Staring lisen at " + process.env.APP_URL + " " + process.env.PORT + " and /==token==");
+    bot.telegram.setWebhook(process.env.APP_URL);
+    bot.startWebhook(process.env.BOT_TOKEN, null, parseInt(process.env.PORT));
 }
 bot.start(function (ctx) { return ctx.reply('Welcome!'); });
 // [
@@ -73,4 +71,6 @@ bot.hears('/exchangeRate', function (ctx) { return __awaiter(void 0, void 0, voi
         }
     });
 }); });
-bot.launch();
+if (!process.env.APP_URL) {
+    bot.launch();
+}
