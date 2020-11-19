@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
-    "prod-start": "npm run build && npm start"
+    "prod-start": "npm i && npm run build && npm start"
   },
   "author": "",
   "license": "ISC",
