@@ -4,14 +4,14 @@ import got from 'got'
 if (!process.env.BOT_TOKEN) {
     throw new Error('BOT_TOKEN env var needed')
 }
-// Heroku built in env var
-const webhookUrl = process.env.APP_URL ?? false
+
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
-if (webhookUrl) {
-    bot.telegram.setWebhook(`${webhookUrl}/bot${process.env.BOT_TOKEN}`)
-    bot.startWebhook(`${webhookUrl}/bot${process.env.BOT_TOKEN}`, null, 5000)
-}
+
+const url = process.env.APP_URL || 'https://sixkbot.herokuapp.com:443';
+bot.telegram.setWebhook(`${url}/bot${process.env.BOT_TOKEN}`)
+bot.startWebhook(`${url}/bot${process.env.BOT_TOKEN}`, null, 443)
+
 bot.start((ctx) => ctx.reply('Welcome!'))
 // [
 // {"ccy":"USD","base_ccy":"UAH","buy":"28.05000","sale":"28.45000"},
