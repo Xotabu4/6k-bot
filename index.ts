@@ -7,10 +7,7 @@ if (!process.env.BOT_TOKEN) {
 
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
-
-const url = process.env.APP_URL || 'https://sixkbot.herokuapp.com:443';
-bot.telegram.setWebhook(`${url}/bot${process.env.BOT_TOKEN}`)
-bot.startWebhook(`${url}/bot${process.env.BOT_TOKEN}`, null, 443)
+bot.startWebhook('/secret-path', null, 5000)
 
 bot.start((ctx) => ctx.reply('Welcome!'))
 // [
