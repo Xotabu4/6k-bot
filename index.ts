@@ -6,8 +6,10 @@ if (!process.env.BOT_TOKEN) {
 }
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
-bot.telegram.setWebhook(process.env.APP_URL)
-bot.startWebhook(process.env.BOT_TOKEN, null, 5000)
+if (process.env.APP_URL) {
+    bot.telegram.setWebhook(process.env.APP_URL)
+    bot.startWebhook(process.env.BOT_TOKEN, null, 5000)
+}
 
 bot.start((ctx) => ctx.reply('Welcome!'))
 // [
@@ -25,4 +27,6 @@ USD продажа: ${body.find(c => c.ccy === 'USD').sale}
 
 })
 
-bot.launch()
+if (!process.env.APP_URL) {
+    bot.launch()
+} 
