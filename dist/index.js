@@ -48,7 +48,6 @@ var bot = new telegraf_1.Telegraf(process.env.BOT_TOKEN);
 if (process.env.APP_URL && process.env.PORT) {
     console.log("Staring lisen at " + process.env.APP_URL + " " + process.env.PORT + " and /==token==");
     bot.telegram.setWebhook(process.env.APP_URL);
-    bot.startWebhook(process.env.BOT_TOKEN, null, parseInt(process.env.PORT));
 }
 bot.start(function (ctx) { return ctx.reply('Welcome!'); });
 // [
@@ -71,6 +70,10 @@ bot.hears('/exchangeRate', function (ctx) { return __awaiter(void 0, void 0, voi
         }
     });
 }); });
-if (!process.env.APP_URL) {
+if (!process.env.APP_URL || !process.env.PORT) {
     bot.launch();
+}
+else {
+    console.log("Staring listening at " + process.env.APP_URL + " " + process.env.PORT + " and /==token==");
+    bot.startWebhook(process.env.BOT_TOKEN, null, parseInt(process.env.PORT));
 }

@@ -9,7 +9,6 @@ const bot = new Telegraf(process.env.BOT_TOKEN)
 if (process.env.APP_URL && process.env.PORT) {
     console.log(`Staring lisen at ${process.env.APP_URL} ${process.env.PORT} and /==token==`)
     bot.telegram.setWebhook(process.env.APP_URL)
-    bot.startWebhook(process.env.BOT_TOKEN, null, parseInt(process.env.PORT), new URL())
 }
 
 bot.start((ctx) => ctx.reply('Welcome!'))
@@ -28,6 +27,10 @@ USD продажа: ${body.find(c => c.ccy === 'USD').sale}
 
 })
 
-//if (!process.env.APP_URL) {
-bot.launch()
-// }
+if (!process.env.APP_URL || !process.env.PORT) {
+    bot.launch()
+} else {
+    console.log("Staring listening at " + process.env.APP_URL + " " + process.env.PORT + " and /==token==");
+    bot.startWebhook(process.env.BOT_TOKEN, null, parseInt(process.env.PORT))
+}
+
