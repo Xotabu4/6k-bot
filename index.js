@@ -24,13 +24,16 @@ const bot = new TelegramBot(process.env.BOT_TOKEN, options);
 // Note: we do not need to pass in the cert, as it already provided
 bot.setWebHook(`${url}/bot${process.env.BOT_TOKEN}`);
 
-bot.onText(/\/exchangeRate/, async (msg, match) => {
+bot.onText(/\/rate/, async (msg, match) => {
     const body = JSON.parse((await got('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5')).body)
+    
+    const usd = body.find(c => c.ccy === 'USD')
+    const eur = body.find(c => c.ccy === 'USD')
     const reply = 
 `
 PrivatBank 💵
-USD покупка: ${body.find(c => c.ccy === 'USD').buy}
-USD продажа: ${body.find(c => c.ccy === 'USD').sale}
+USD 💵 ${usd.buy} / ${usd.sale}
+EUR 💶 ${eur.buy} / ${eur.sale}
 `
     bot.sendMessage(msg.chat.id, reply)
 })
