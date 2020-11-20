@@ -28,7 +28,7 @@ bot.onText(/\/rate/, async (msg, match) => {
     const body = JSON.parse((await got('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5')).body)
     
     const usd = body.find(c => c.ccy === 'USD')
-    const eur = body.find(c => c.ccy === 'USD')
+    const eur = body.find(c => c.ccy === 'EUR')
     const reply = 
 `
 PrivatBank 💵
