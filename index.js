@@ -31,7 +31,7 @@ bot.onText(/\/rate/, async (msg, match) => {
     const eur = body.find(c => c.ccy === 'EUR')
     const reply = 
 `
-PrivatBank 💵
+PrivatBank
 USD 💵 ${usd.buy} / ${usd.sale}
 EUR 💶 ${eur.buy} / ${eur.sale}
 `
