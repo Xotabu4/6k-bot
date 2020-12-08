@@ -39,6 +39,6 @@ EUR 💶 ${eur.buy} / ${eur.sale}
 })
 
 bot.onText(/мануальная псина/gi, (msg, match) => {
-    const stickerid = 'CAACAgIAAxkBAAJ6c1_PyeRBtH2gpW_5w-hbsFI6p_liAAIrAAMD38wXi0kFNe_1caoeBA'
+    const stickerid = 'CAACAgIAAxkBAAE77AVfz8wDPlXfndDEQEpxOnbLuAqptgACKwADA9_MF4tJBTXv9XGqHgQ'
     bot.sendSticker(msg.chat.id, stickerid)
 })
