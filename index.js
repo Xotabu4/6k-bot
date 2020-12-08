@@ -37,3 +37,8 @@ EUR 💶 ${eur.buy} / ${eur.sale}
 `
     bot.sendMessage(msg.chat.id, reply)
 })
+
+bot.onText(/мануальная псина/gi, (msg, match) => {
+    const stickerid = 'CAACAgIAAxkBAAJ6c1_PyeRBtH2gpW_5w-hbsFI6p_liAAIrAAMD38wXi0kFNe_1caoeBA'
+    bot.sendSticker(msg.chat.id, stickerid)
+})
